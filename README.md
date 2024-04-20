@@ -72,6 +72,8 @@ The following error responses can be returned by the service:
     - `Invalid personal ID code!` - if the provided personal ID code is invalid
     - `Invalid loan amount!` - if the requested loan amount is invalid
     - `Invalid loan period!` - if the requested loan period is invalid
+    - `Person is too young to apply for a loan!` - if the person is underage
+    - `Person is too old to apply for a loan!` - if the person is over the eligible loan age
 - `404 Not Found` - in case no valid loans can be found
     - `No valid loan found!` - if there is no valid loan found for the given ID code, loan amount, and loan period
 - `500 Internal Server Error` - in case the server encounters an unexpected error while processing the request
