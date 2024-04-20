@@ -51,6 +51,11 @@ public class DecisionEngine {
             throw new NoValidLoanException("No valid loan found!");
         }
 
+         // Implemented credit score algorithm
+        if (getCreditScore(creditModifier, loanAmount, loanPeriod) < 1)
+            throw new NoValidLoanException("Too risky loan!");
+
+
         while (highestValidLoanAmount(loanPeriod) < DecisionEngineConstants.MINIMUM_LOAN_AMOUNT) {
             loanPeriod++;
         }
@@ -62,6 +67,18 @@ public class DecisionEngine {
         }
 
         return new Decision(outputLoanAmount, loanPeriod, null);
+    }
+
+    /**
+     * Calculates the loan's credit score based on the person's loan details
+     *
+     * @param creditModifier Allowed credit amount for a person
+     * @param loanAmount Requested loan amount
+     * @param loanPeriod Requested loan period
+     * @return The person's credit score based on their loan request
+     */
+    private double getCreditScore(int creditModifier, Long loanAmount, int loanPeriod) {
+        return ((double) creditModifier / loanAmount) * loanPeriod;
     }
 
     /**
